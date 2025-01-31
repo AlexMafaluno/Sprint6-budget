@@ -20,4 +20,15 @@ describe('CheckboxComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+  it('should calculate totalPrice correctly when specific product are selected', () => {
+    component.checkboxForm.setValue({
+      selectedProducts : { 1: true, 2: false, 3: true}
+    });
+
+    component.calculateTotal();
+    expect(component.totalPrice).toBe(800);
+
+
+  });
 });
