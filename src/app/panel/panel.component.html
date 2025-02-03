@@ -1,0 +1,11 @@
+<div class="bg-red">
+
+<form [formGroup]="panelForm" (ngSubmit)='onSubmit()'>
+
+<label for="num-page">Number of pages: </label>
+<input id ="num-page" type="text" formControlName='numPages' required><br>
+
+<label for="num-language">Number of languages: </label>
+<input id ="num-language" type="text" formControlName='numLanguages' required>
+</form>
+</div>

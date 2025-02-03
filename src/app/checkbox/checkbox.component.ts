@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { PanelComponent } from "../panel/panel.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-checkbox',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PanelComponent, CommonModule],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss'
 })
 export class CheckboxComponent {
   checkboxForm : FormGroup;
   totalPrice: number = 0;
+  @Output() panelToggle = new EventEmitter<boolean> ();
 
   products = [
   {id: 1, title:'Seo', description: 'Hola', price: 300 },
@@ -17,6 +20,7 @@ export class CheckboxComponent {
   {id: 3, title:'Web', description: 'Buenas', price: 500 }
   ]
   
+selectedCheckboxes: { [key: number]: boolean } = {}; // Objeto para almacenar checkboxes marcados
 
 
 constructor(private fb : FormBuilder) {
@@ -34,6 +38,15 @@ constructor(private fb : FormBuilder) {
   this.checkboxForm.valueChanges.subscribe(() => {
     this.calculateTotal();
   });
+}
+
+onCheckboxChange(id: number, event: any) {
+  this.selectedCheckboxes[id] = event.target.checked;
+
+    // Si el checkbox con id === 2 cambia, emitimos el evento
+    if (id === 3) {
+      this.panelToggle.emit(this.selectedCheckboxes[id]);
+    }
 }
 
 
