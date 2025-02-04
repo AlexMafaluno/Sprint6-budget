@@ -1,11 +1,22 @@
 <div class="bg-red">
-
-<form [formGroup]="panelForm" (ngSubmit)='onSubmit()'>
-
-<label for="num-page">Number of pages: </label>
-<input id ="num-page" type="text" formControlName='numPages' required><br>
-
-<label for="num-language">Number of languages: </label>
-<input id ="num-language" type="text" formControlName='numLanguages' required>
-</form>
+  <form [formGroup]="panelForm">
+    <div class="mb-3">
+      <label for="num-page">Number of pages: </label>
+      <button class="btn btn-primary w-auto m-1" (click)="decrease()">-</button>
+      <input id="num-page" type="text" formControlName="numPages"><br/>
+      <button class="btn btn-primary w-auto m-1" (click)="increase()">+</button>
+      <p *ngIf="panelForm.get('numPages')?.errors?.['required']">
+        El campo es requerido
+      </p>
+    </div>
+    <div class="mb-3">
+      <label for="num-language">Number of languages: </label>
+      <button class="btn btn-primary w-auto m-1" (click)="decrease()">-</button>
+      <input id="num-language" type="text" formControlName="numLanguages">
+      <button class="btn btn-primary w-auto m-1" (click)="increase()">+</button>
+      <p *ngIf="panelForm.get('numLanguages')?.errors?.['required']">
+        El campo es requerido
+      </p>
+    </div>
+  </form>
 </div>

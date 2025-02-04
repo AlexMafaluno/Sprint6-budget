@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { BudgetService } from '../Services/budget.service';
 import { Product } from '../interfaces/product';
 
+
 @Component({
   selector: 'app-checkbox',
   imports: [ReactiveFormsModule, PanelComponent, CommonModule],
@@ -16,21 +17,17 @@ export class CheckboxComponent {
   products : Product[] = [];
   checkboxForm : FormGroup;
   totalPrice: number = 0;
+  selectedCheckboxes: { [key: number]: boolean } = {}; // Objeto para almacenar checkboxes marcados
+
   @Output() panelToggle = new EventEmitter<boolean> ();
 
-  private BudgetService=inject(BudgetService);
-
-loadProduct(){
-  this.products = this.BudgetService.getProduct();
-}
-  
-  
-selectedCheckboxes: { [key: number]: boolean } = {}; // Objeto para almacenar checkboxes marcados
+  private budgetService=inject(BudgetService);
 
 
 constructor(private fb : FormBuilder) {
-
-  this.loadProduct();
+  this.products = this.budgetService.getProduct();
+  this.budgetService.setProducts(this.products);
+  this.budgetService.totalPrice$.subscribe(price => this.totalPrice = price);
 
   const productControls = this.products.reduce((acc, product) => {
     acc[product.id] = [false];
@@ -43,7 +40,12 @@ constructor(private fb : FormBuilder) {
 
   // Escuchar cambios en los checkboxes
   this.checkboxForm.valueChanges.subscribe(() => {
-    this.calculateTotal();
+    const selectedProducts = this.checkboxForm.value.selectedProducts;
+
+  // 🔥 Ahora actualizamos `BudgetService` con los productos seleccionados
+    this.products.forEach(product => {
+      this.budgetService.toggleProductSelection(product.id, selectedProducts[product.id]);
+    });
   });
 }
 
@@ -54,14 +56,6 @@ onCheckboxChange(id: number, event: any) {
     if (id === 3) {
       this.panelToggle.emit(this.selectedCheckboxes[id]);
     }
-}
-
-
-calculateTotal(){
-
-  const selectedProducts = this.checkboxForm.value.selectedProducts;
-  this.totalPrice = this.products.filter(product => selectedProducts[product.id]).
-  reduce((sum, product) => sum + product.price, 0);
 }
 
 
