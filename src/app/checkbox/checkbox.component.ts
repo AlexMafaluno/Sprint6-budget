@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PanelComponent } from "../panel/panel.component";
 import { CommonModule } from '@angular/common';
+import { BudgetService } from '../Services/budget.service';
+import { Product } from '../interfaces/product';
 
 @Component({
   selector: 'app-checkbox',
@@ -10,20 +12,25 @@ import { CommonModule } from '@angular/common';
   styleUrl: './checkbox.component.scss'
 })
 export class CheckboxComponent {
+  
+  products : Product[] = [];
   checkboxForm : FormGroup;
   totalPrice: number = 0;
   @Output() panelToggle = new EventEmitter<boolean> ();
 
-  products = [
-  {id: 1, title:'Seo', description: 'Hola', price: 300 },
-  {id: 2, title:'Ads', description: 'Adios', price: 400 },
-  {id: 3, title:'Web', description: 'Buenas', price: 500 }
-  ]
+  private BudgetService=inject(BudgetService);
+
+loadProduct(){
+  this.products = this.BudgetService.getProduct();
+}
+  
   
 selectedCheckboxes: { [key: number]: boolean } = {}; // Objeto para almacenar checkboxes marcados
 
 
 constructor(private fb : FormBuilder) {
+
+  this.loadProduct();
 
   const productControls = this.products.reduce((acc, product) => {
     acc[product.id] = [false];
