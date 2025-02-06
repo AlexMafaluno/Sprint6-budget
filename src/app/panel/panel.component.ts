@@ -32,7 +32,6 @@ updateValue(field: 'numPages' | 'numLanguages', increment: boolean) {
   let currentValue = this.panelForm.get(field)?.value || 0;
 
   if (!increment && currentValue === 0) return; // Evitar valores negativos
-  if(currentValue ==='') return
 
   this.panelForm.patchValue({ [field]: increment ? currentValue + 1 : currentValue - 1 });
 }
@@ -65,6 +64,8 @@ ngOnInit(): void {
       this.numLanguages.emit(numLanguages);
     });
   }
+
+  
 
 ngSubmit(): void{}
 }
