@@ -11,9 +11,9 @@ import { BudgetService } from '../Services/budget.service';
 })
 export class PanelComponent implements OnInit{
 
+
 panelForm : FormGroup;
 required: any;
-counter : number = 1;
 
 private budgetService = inject(BudgetService);
 
@@ -27,19 +27,38 @@ constructor(private fb: FormBuilder ){
   })
 }
 
-increase(){
-  this.counter++;
+
+updateValue(field: 'numPages' | 'numLanguages', increment: boolean) {
+  let currentValue = this.panelForm.get(field)?.value || 0;
+
+  if (!increment && currentValue === 0) return; // Evitar valores negativos
+  if(currentValue ==='') return
+
+  this.panelForm.patchValue({ [field]: increment ? currentValue + 1 : currentValue - 1 });
+}
+increasePages() {
+this.updateValue('numPages', true);
 }
 
-decrease(){
-  this.counter--;
+decreasePages() {
+  this.updateValue('numPages', false);
 }
 
+increaseLanguages() {
+  this.updateValue('numLanguages', true);
+}
+
+decreaseLanguages() {
+  this.updateValue('numLanguages', false);
+}
+  
 
 ngOnInit(): void {
     this.panelForm.valueChanges.subscribe(values => { //valueChanges.subscribe() detecta cambios en el formulario y los envía al servicio.
-      const numPages = Number(values.numPages) || 0; // Asegurar que sea un número
-      const numLanguages = Number(values.numLanguages) || 0;
+      const numPages : number = Number(values.numPages ?? 0); // Asegurar que sea un número
+      const numLanguages : number  = Number(values.numLanguages ?? 0);
+
+    
 
       this.budgetService.updateWebCalculation(numPages, numLanguages);
       this.numPages.emit(numPages);

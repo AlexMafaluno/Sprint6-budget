@@ -2,18 +2,18 @@
   <form [formGroup]="panelForm">
     <div class="mb-3">
       <label for="num-page">Number of pages: </label>
-      <button class="btn btn-primary w-auto m-1" (click)="decrease()">-</button>
-      <input id="num-page" type="text" formControlName="numPages"><br/>
-      <button class="btn btn-primary w-auto m-1" (click)="increase()">+</button>
+      <button class="btn" (click)="decreasePages()"><i class="bi bi-dash-circle"></i></button>
+      <input id="num-page" type="text" style="width: 50px" formControlName="numPages">
+      <button class="btn" (click)="increasePages()" ><i class="bi bi-plus-circle"></i></button>
       <p *ngIf="panelForm.get('numPages')?.errors?.['required']">
         El campo es requerido
       </p>
     </div>
     <div class="mb-3">
       <label for="num-language">Number of languages: </label>
-      <button class="btn btn-primary w-auto m-1" (click)="decrease()">-</button>
-      <input id="num-language" type="text" formControlName="numLanguages">
-      <button class="btn btn-primary w-auto m-1" (click)="increase()">+</button>
+      <button class="btn " (click)="decreaseLanguages()"><i class="bi bi-dash-circle"></i></button>
+      <input id="num-language" style="width: 50px" type="text" formControlName="numLanguages">
+      <button class="btn" (click)="increaseLanguages()" ><i class="bi bi-plus-circle"></i></button>
       <p *ngIf="panelForm.get('numLanguages')?.errors?.['required']">
         El campo es requerido
       </p>

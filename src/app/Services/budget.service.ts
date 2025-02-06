@@ -62,6 +62,7 @@ getProduct() : Product []{
 }
 
 
+
   constructor() {
     this.updateTotalPrice();
   } 
