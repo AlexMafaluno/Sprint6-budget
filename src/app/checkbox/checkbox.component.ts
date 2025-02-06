@@ -1,25 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { PanelComponent } from "../panel/panel.component";
+import { CommonModule } from '@angular/common';
+import { BudgetService } from '../Services/budget.service';
+import { Product } from '../interfaces/product';
+
 
 @Component({
   selector: 'app-checkbox',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PanelComponent, CommonModule],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss'
 })
 export class CheckboxComponent {
+  
+  products : Product[] = [];
   checkboxForm : FormGroup;
   totalPrice: number = 0;
+  selectedCheckboxes: { [key: number]: boolean } = {}; // Objeto para almacenar checkboxes marcados
 
-  products = [
-  {id: 1, title:'Seo', description: 'Hola', price: 300 },
-  {id: 2, title:'Ads', description: 'Adios', price: 400 },
-  {id: 3, title:'Web', description: 'Buenas', price: 500 }
-  ]
-  
+  @Output() panelToggle = new EventEmitter<boolean> ();
+
+  private budgetService=inject(BudgetService);
 
 
 constructor(private fb : FormBuilder) {
+  this.products = this.budgetService.getProduct();
+  this.budgetService.setProducts(this.products);
+  this.budgetService.totalPrice$.subscribe(price => this.totalPrice = price);
 
   const productControls = this.products.reduce((acc, product) => {
     acc[product.id] = [false];
@@ -32,16 +40,22 @@ constructor(private fb : FormBuilder) {
 
   // Escuchar cambios en los checkboxes
   this.checkboxForm.valueChanges.subscribe(() => {
-    this.calculateTotal();
+    const selectedProducts = this.checkboxForm.value.selectedProducts;
+
+  // 🔥 Ahora actualizamos `BudgetService` con los productos seleccionados
+    this.products.forEach(product => {
+      this.budgetService.toggleProductSelection(product.id, selectedProducts[product.id]);
+    });
   });
 }
 
+onCheckboxChange(id: number, event: any) {
+  this.selectedCheckboxes[id] = event.target.checked;
 
-calculateTotal(){
-
-  const selectedProducts = this.checkboxForm.value.selectedProducts;
-  this.totalPrice = this.products.filter(product => selectedProducts[product.id]).
-  reduce((sum, product) => sum + product.price, 0);
+    // Si el checkbox con id === 2 cambia, emitimos el evento
+    if (id === 3) {
+      this.panelToggle.emit(this.selectedCheckboxes[id]);
+    }
 }
 
 
