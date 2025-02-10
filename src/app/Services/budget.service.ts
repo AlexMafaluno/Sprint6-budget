@@ -16,6 +16,9 @@ export class BudgetService {
   
 private selectedProducts: { [key: number]: boolean } = {};
 
+arrayBudget: string[] = [];
+
+
 private numPages : number = 0;
 private numLanguages : number = 0;
 
