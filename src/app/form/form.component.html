@@ -3,18 +3,18 @@
 <div class= "container my-3">
     <div class= "row justify-content-center">
         <div class="col-12 col-xl-8">
-            <div class= "card">
+            <div class= "card shadow">
                 <div class="card-body">
                     <h2>Request a quote</h2>
                 </div>
-                <div class="card-body mx-auto">
+                <div class="card-body">
                 <form [formGroup]="reactiveForm" (ngSubmit)="submit()">
                     <input type="text" placeholder="Name" formControlName="name" required>
                     @if(this.reactiveForm.get('name')?.errors?.['required']) {
                         <span>(El nombre no puede quedar vacío)</span>
                     }
                     @if(this.reactiveForm.get('name')?.errors?.['minlength']) {
-                        <span>(Debe tener como mínimo 10 caracteres)</span>
+                        <span>(Debe tener como mínimo 3 caracteres)</span>
                     }
                     <input class="mx-5" type="text" placeholder="Phone" formControlName="phone" required>
                     @if(this.reactiveForm.get('phone')?.errors?.['required']) {
