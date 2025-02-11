@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-8">
+            <div class="card-body align-items-start p-3 mb-3">
+                <h2>ongoing budgets</h2>
+                <p>total of budgets {{budgets.length}}</p>
+                @for(budget of budgets; track budget){
+            <div class= "card shadow flex-row justify-content-between p-3 mb-3">
+                <div class = "title">
+                    <h2>{{budget.name}}</h2>
+                    <p>{{budget.phone}}</p>
+                    <p>{{budget.email}}</p>
+                </div>
+                <div class="card-services">
+                <h4>contracted services</h4>
+                <ul>
+                    @for(service of budget.services; track service){
+                        <li>{{service}}</li>
+                    }
+                </ul>
+                </div>
+                <div class="card-price">
+                <h4>Total:</h4>
+                <h2>{{budget.total}}€</h2>
+                </div>
+            </div>
+        }
+        </div> 
+        </div>
+        </div>
+</div>
+
