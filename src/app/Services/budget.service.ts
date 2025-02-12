@@ -9,6 +9,7 @@ import { Budget } from '../interfaces/budget';
 })
 export class BudgetService {
 
+
 private products : Product[] = [
     {id: 1, title:'Seo', description: 'Hola', price: 300 },
     {id: 2, title:'Ads', description: 'Adios', price: 400 },
@@ -83,19 +84,25 @@ const total = this.products.reduce(
 const newBudget: Budget = {
   ...budgetData, // Datos del formulario
   services: selectedServices, // Servicios seleccionados
-  total: total // Total calculado
+  total: total, // Total calculado
+  date: new Date
 };
 
   this.Budgets.update(budgets => [...budgets, newBudget]);
   console.log("Presupuesto agregado:", newBudget);
 }
 
-
-/*
-updateBudget(): Budget[]{
-  this.Budgets.update(budgets => [...budgets, newBudget])
+sortedDateBudget(): void{
+  this.Budgets.update(budgets => [...budgets].sort((a, b) => a.date.getTime()- b.date.getTime()));
 }
-*/
+
+sortedImportBudget(): void{
+  this.Budgets.update(budgets =>[...budgets].sort((a, b) =>b.total - a.total));
+}
+
+sortedNameBudget(): void{
+  this.Budgets.update(budgets => [...budgets].sort((a, b) =>a.name.localeCompare(b.name)));
+}
 
   constructor() {
     this.updateTotalPrice();
