@@ -15,11 +15,6 @@ public budgets: Budget[]= [];
 
 private budgetService=inject(BudgetService);
 
-loadBudgets(){
-this.budgets = this.budgetService.Budgets();
-console.log('budget in budget-list-Component:', this.budgets);
-}
-
 constructor() {
 effect(() => {
   this.budgets = this.budgetService.Budgets();
