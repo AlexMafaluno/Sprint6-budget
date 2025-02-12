@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { BehaviorSubject } from 'rxjs';
 import { Budget } from '../interfaces/budget';
@@ -17,15 +17,7 @@ private products : Product[] = [
   
 private selectedProducts: { [key: number]: boolean } = {};
 
-public Budgets: Budget[] = [{
-  name: 'Alejandro',
-  phone: 6756756756,
-  email: 'mart.perez93@gmail.com',
-  services:['Seo', 'Ads'],
-  total: 654
-}
-  
-];
+public Budgets= signal<Budget[]>([]);// Inicializa la señal con un array vacío
 
 
 private numPages : number = 0;
@@ -73,7 +65,7 @@ getProduct() : Product []{
   return this.products;
 }
 
-addBudget(budgetData: Budget) {
+addBudget(budgetData: Budget):void {
 
 // Obtener los servicios seleccionados
 const selectedServices = this.products
@@ -94,14 +86,16 @@ const newBudget: Budget = {
   total: total // Total calculado
 };
 
-  this.Budgets.push(newBudget);
+  this.Budgets.update(budgets => [...budgets, newBudget]);
   console.log("Presupuesto agregado:", newBudget);
 }
 
-getBudget(): Budget[]{
-  return this.Budgets;
-}
 
+/*
+updateBudget(): Budget[]{
+  this.Budgets.update(budgets => [...budgets, newBudget])
+}
+*/
 
   constructor() {
     this.updateTotalPrice();
