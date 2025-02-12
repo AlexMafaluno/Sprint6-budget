@@ -32,9 +32,11 @@ submit() {
   console.log(typeof budgetData)
   console.log(budgetData)
 
+  // Agregar el presupuesto al servicio
    this.budgetService.addBudget(budgetData);
 
-  this.data.emit(this.budgetService.getBudget());
+   // Emitir el dato correcto
+   this.data.emit(budgetData);
 
   this.reactiveForm.reset();
 
