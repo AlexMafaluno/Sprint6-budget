@@ -3,5 +3,6 @@ export interface Budget {
     phone: number,
     email: string,
     services: string[],
-    total: number
+    total: number,
+    date: Date
 }
