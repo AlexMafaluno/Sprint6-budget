@@ -15,6 +15,28 @@ public budgets: Budget[]= [];
 
 private budgetService=inject(BudgetService);
 
+name :string = document.getElementById('write-name');
+
+sortedDate(): void{
+  this.budgetService.sortedDateBudget(); // Llama al servicio para ordenar
+  console.log("llamando al metodo sortedDate del servicio")
+}
+sortedImport(): void{
+  this.budgetService.sortedImportBudget();
+  console.log("llamando al metodo sortedImport del servicio")
+}
+
+sortedName(): void{
+  this.budgetService.sortedNameBudget();
+    console.log("llamando al metodo SortedName del servicio")
+  }
+
+FindName(name): void{
+this.budgetService.sortedNameBudget(name);
+
+}
+
+
 constructor() {
 effect(() => {
   this.budgets = this.budgetService.Budgets();
