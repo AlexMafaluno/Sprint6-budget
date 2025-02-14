@@ -4,9 +4,9 @@
             <div class="card-body align-items-start p-3 mb-3">
                 <h2>ongoing budgets</h2>
                 <p>total of budgets {{budgets.length}}</p>
-                <div class="buttons d-flex justify-content-end">
-                <input id="write-name" placeholder="Find by name" type="text" class="">
-                <button type="button" (click)="FindName()" class="btn" ><i class="bi bi-search"></i></button>
+                <div class="buttons d-flex justify-content-end mb-3">
+                <input id="write-name" #writeNameInput placeholder="Find by name" type="text" class="">
+                <button type="button"  (click)="searchName()" class="btn" ><i class="bi bi-search"></i></button>
                 <button type="button" (click)="sortedDate()" class="btn shadow btn-light">Data</button>
                 <button type="button" (click)="sortedImport()" class="btn shadow btn-light mx-3">Import</button>
                 <button type="button" (click)="sortedName()" class="btn shadow btn-light">Name</button>

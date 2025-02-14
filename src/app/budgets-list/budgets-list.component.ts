@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, Signal } from '@angular/core';
+import { Component, effect, ElementRef, inject, OnInit, Signal, ViewChild } from '@angular/core';
 import { BudgetService } from '../Services/budget.service';
 import { Budget } from '../interfaces/budget';
 import { CommonModule } from '@angular/common';
@@ -12,29 +12,47 @@ import { CommonModule } from '@angular/common';
 export class BudgetsListComponent {
 
 public budgets: Budget[]= [];
+foundBudget: Budget | null = null; // Variable para mostrar el resultado
+
 
 private budgetService=inject(BudgetService);
 
-name :string = document.getElementById('write-name');
+@ViewChild('writeNameInput') writeNameInput!: ElementRef<HTMLInputElement>;
 
 sortedDate(): void{
   this.budgetService.sortedDateBudget(); // Llama al servicio para ordenar
   console.log("llamando al metodo sortedDate del servicio")
+  console.log('Presupuesto budgets:', this.budgets);
 }
 sortedImport(): void{
   this.budgetService.sortedImportBudget();
   console.log("llamando al metodo sortedImport del servicio")
+  console.log('Presupuesto budgets:', this.budgets);
 }
 
 sortedName(): void{
   this.budgetService.sortedNameBudget();
     console.log("llamando al metodo SortedName del servicio")
+    console.log('Presupuesto budgets:', this.budgets);
   }
 
-FindName(name): void{
-this.budgetService.sortedNameBudget(name);
-
+searchName(): void {
+  
+  const name = this.writeNameInput.nativeElement.value.trim();
+  console.log(name)
+  if (name) {
+    this.foundBudget = this.budgetService.findBudgetByName(name) || null;
+   if(this.foundBudget){
+    console.log('Presupuesto encontrado:', this.foundBudget);
+    this.budgets = [this.foundBudget];
+    console.log('Presupuesto budgets:', this.budgets);
+    } else {
+    console.log('El campo de nombre está vacío.');
+    this.budgets = [];
+  }
 }
+}
+
 
 
 constructor() {
