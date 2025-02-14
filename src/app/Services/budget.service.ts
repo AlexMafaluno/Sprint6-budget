@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { BehaviorSubject } from 'rxjs';
+import { Budget } from '../interfaces/budget';
 
 
 @Injectable({
@@ -8,13 +9,17 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BudgetService {
 
-  private products : Product[] = [
+
+private products : Product[] = [
     {id: 1, title:'Seo', description: 'Hola', price: 300 },
     {id: 2, title:'Ads', description: 'Adios', price: 400 },
     {id: 3, title:'Web', description: 'Buenas', price: 500 }
     ]
   
 private selectedProducts: { [key: number]: boolean } = {};
+
+public Budgets= signal<Budget[]>([]);// Inicializa la señal con un array vacío
+
 
 private numPages : number = 0;
 private numLanguages : number = 0;
@@ -61,7 +66,54 @@ getProduct() : Product []{
   return this.products;
 }
 
+addBudget(budgetData: Budget):void {
 
+// Obtener los servicios seleccionados
+const selectedServices = this.products
+.filter(product => this.selectedProducts[product.id])
+.map(product => product.title);
+
+
+// Calcular el total
+const total = this.products.reduce(
+  (sum, product) => (this.selectedProducts[product.id] ? sum + product.price : sum),
+  this.calculateWeb()
+);
+
+// Crear el nuevo presupuesto
+const newBudget: Budget = {
+  ...budgetData, // Datos del formulario
+  services: selectedServices, // Servicios seleccionados
+  total: total, // Total calculado
+  date: new Date
+};
+
+  this.Budgets.update(budgets => [...budgets, newBudget]);
+  console.log("Presupuesto agregado:", newBudget);
+}
+
+sortedDateBudget(): void{
+  this.Budgets.update(budgets => [...budgets].sort((a, b) => a.date.getTime()- b.date.getTime()));
+}
+
+sortedImportBudget(): void{
+  this.Budgets.update(budgets =>[...budgets].sort((a, b) =>b.total - a.total));
+}
+
+sortedNameBudget(): void{
+  this.Budgets.update(budgets => [...budgets].sort((a, b) =>a.name.localeCompare(b.name)));
+}
+
+findBudgetByName(nameInput: string): Budget | undefined {
+  const budgetsArray = this.Budgets(); // Obtener el array del signal
+
+  if (!budgetsArray || budgetsArray.length === 0) {
+    console.error('No hay presupuestos disponibles.');
+    return undefined;
+  }
+  const foundBudget = budgetsArray.find(budget => budget.name.toLowerCase() === nameInput.trim().toLowerCase());
+  return foundBudget;
+}
 
   constructor() {
     this.updateTotalPrice();
