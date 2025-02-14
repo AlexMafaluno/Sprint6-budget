@@ -104,6 +104,17 @@ sortedNameBudget(): void{
   this.Budgets.update(budgets => [...budgets].sort((a, b) =>a.name.localeCompare(b.name)));
 }
 
+findBudgetByName(nameInput: string): Budget | undefined {
+  const budgetsArray = this.Budgets(); // Obtener el array del signal
+
+  if (!budgetsArray || budgetsArray.length === 0) {
+    console.error('No hay presupuestos disponibles.');
+    return undefined;
+  }
+  const foundBudget = budgetsArray.find(budget => budget.name.toLowerCase() === nameInput.trim().toLowerCase());
+  return foundBudget;
+}
+
   constructor() {
     this.updateTotalPrice();
   } 
