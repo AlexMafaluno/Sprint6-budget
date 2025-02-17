@@ -29,8 +29,8 @@ showModal: boolean = false;  // Controla el estado del modal
 selectedModal: { title: string; description: string } | null = null;
 
 modals = [
-  {title: 'Number of pages', description : 'add add add'},
-  {title: 'Number of languages',description: 'HI HI HI'}
+  {title: 'Nº of pages', description : 'Add the pages ​​that your project will have. The cost of each pages is 30€'},
+  {title: 'Nº of languages',description: 'Add the languages ​​that your project will have. The cost of each language is 30€'}
 ];
 
   openModal(id: number) {
