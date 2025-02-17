@@ -11,9 +11,9 @@ export class BudgetService {
 
 
 private products : Product[] = [
-    {id: 1, title:'Seo', description: 'Hola', price: 300 },
-    {id: 2, title:'Ads', description: 'Adios', price: 400 },
-    {id: 3, title:'Web', description: 'Buenas', price: 500 }
+    {id: 1, title:'Seo', description: 'Programming Seo website', price: 300 },
+    {id: 2, title:'Ads', description: 'Programming Add website', price: 400 },
+    {id: 3, title:'Web', description: 'Programming Web website', price: 500 }
     ]
   
 private selectedProducts: { [key: number]: boolean } = {};
