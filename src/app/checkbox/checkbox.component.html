@@ -22,8 +22,13 @@
             </div>
             </div>
         </div>
-            <div class="d-flex justify-content-end w-100">
-                <app-panel *ngIf="product.id === 3 && selectedCheckboxes[3]"></app-panel>
+            <div *ngIf="product.id === 3 && selectedCheckboxes[3]" class="d-flex justify-content-end w-100">
+                <app-panel  
+                [pages]="pages"
+                [lang]="lang"
+                (numPages)="updatePages($event)"
+                (numLanguages)="updateLang($event)">
+                </app-panel>
             </div>
         </div>
         }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PanelComponent } from "../panel/panel.component";
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,11 @@ export class CheckboxComponent {
   selectedCheckboxes: { [key: number]: boolean } = {}; // Objeto para almacenar checkboxes marcados
 
   @Output() panelToggle = new EventEmitter<boolean> ();
+ // ✅ Ahora pages y lang NO son signals locales, sino valores normales para asegurar la correcta sincronización
+ pages: number = 0;
+ lang: number = 0;
 
+  
   private budgetService=inject(BudgetService);
   private route = inject(ActivatedRoute);
   private router = inject(Router); // Agregamos Router para actualizar la URL
@@ -64,6 +68,10 @@ constructor(private fb : FormBuilder) {
     this.AddPage.set(params['AddPage'] === 'true');
     this.WebPage.set(params['WebPage'] === 'true');
 
+     // ✅ Actualizamos pages y lang con los valores de la URL
+     this.pages = Number(params['pages']) || 0;
+     this.lang = Number(params['lang']) || 0;
+ 
 
     this.checkboxForm.patchValue({
       SeoPage: this.SeoPage(),
@@ -110,6 +118,8 @@ updateQueryParams() {
       SeoPage: formValues.SeoPage ? 'true' : null,
       AddPage: formValues.AddPage ? 'true' : null,
       WebPage: formValues.WebPage ? 'true' : null,
+      pages: this.pages > 0 ? this.pages : null,
+      lang: this.lang > 0 ? this.lang : null
     };
 
 
@@ -125,15 +135,28 @@ this.router.navigate([], {
 });
 }
 
+
+// ✅ Método para actualizar `pages` y `lang` desde PanelComponent
+updatePages(value: number) {
+  this.pages = value;
+  this.updateQueryParams();
+}
+
+updateLang(value: number) {
+  this.lang = value;
+  this.updateQueryParams();
+}
+
+
 onCheckboxChange(id: number, event: any) {
   this.selectedCheckboxes[id] = event.target.checked;
-  this.updateQueryParams();
+  
   this.updateBudgetService();
     // Si el checkbox con id === 2 cambia, emitimos el evento
     if (id === 3) {
       this.panelToggle.emit(this.selectedCheckboxes[id]);
     }
- 
+    this.updateQueryParams();
 }
 
 
