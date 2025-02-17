@@ -19,7 +19,7 @@ reactiveForm : FormGroup;
 constructor(private fb : FormBuilder, private budgetService: BudgetService) {
 this.reactiveForm = this.fb.group({
 name : ['', [Validators.required, Validators.minLength(3)]],
-phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+phone: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
 email: ['', [Validators.required, Validators.email]],
 });
 }
