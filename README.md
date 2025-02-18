@@ -62,6 +62,14 @@ BudgetService: Gestiona el cálculo del presupuesto total y administra los datos
 
 ## despliegue en Vercel(demo)
 
-La aplicación está desplegada en Vercel y accesible en el siguiente enlace:
+La aplicación está desplegada en Vercel y accesible en el enlace visible en el repositorio.
 
-sprint6-budget.vercel.app
+## Capturas de pantalla
+
+![image](https://github.com/user-attachments/assets/566c040c-df33-4e7b-8254-e1f72d6a69f0)
+![image](https://github.com/user-attachments/assets/0599a1a8-2bdb-4b3d-af09-e6d1cc71d122)
+![image](https://github.com/user-attachments/assets/86fa9aef-736f-4c4f-94f9-28dcaf474dd1)
+
+
+
+
