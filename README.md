@@ -1,3 +1,4 @@
+
 # Sprint 6 App-Budget
 
 ## Introduction
@@ -18,10 +19,15 @@ El objetivo principal de esta aplicación es calcular el presupuesto de una pág
 ## Tecnologías utilizadas
 
 *Angular 19* – Framework para la construcción de aplicaciones web.
+
 *Bootstrap 5*– Para el diseño responsivo y estilización.
+
 *Vercel*– Para el despliegue de la aplicación.
+
 *HTML, SCSS*– Para la estructura y estilos de la interfaz.
+
 *Karma y Jasmine* – Para la implementación de pruebas unitarias.
+
 
 
 
@@ -50,12 +56,17 @@ Una vez que el servidor esté en ejecución, abre tu navegador y navega a http:/
 **Componentes:**
 
 *Checkbox:* Permite al usuario seleccionar qué servicios incluir en el presupuesto.
+
 *Panel:* Componente hijo del Checkbox, recibe eventos emitidos por el componente padre.
+
 *Modals:* Mejora la comprensión de los parámetros de páginas e idiomas mediante ventanas emergentes.
+
 *Formulario Reactivo:* Permite generar presupuestos y almacenarlos en un array.
+
 *Lista de presupuestos:* Permite ordenar y filtrar presupuestos por nombre, fecha e importe utilizando Signals.
 
 **Servicios:**
+
 BudgetService: Gestiona el cálculo del presupuesto total y administra los datos de los presupuestos creados.
 
 *Gestión de la URL y Reactividad:* La aplicación sincroniza los parámetros seleccionados mediante Signals, permitiendo compartir la URL con la configuración actual del presupuesto.
