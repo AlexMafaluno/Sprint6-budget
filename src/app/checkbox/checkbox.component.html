@@ -9,7 +9,8 @@
                     <h2>{{product.title}}</h2>
                     <p>{{product.description}}</p>
                 </div>
-            <div class="price"> {{product.price}}
+            <div class="price"> 
+                <h2>{{product.price}}€</h2>
             </div>
             <div formGroupName="selectedProducts">
             <div class="form-check">
@@ -37,9 +38,11 @@
     
     <div class="row justify-content-center">
         <div class="col-12 col-xl-8">
-            <div class="card d-flex flex-row justify-content-end">
-                <h5>Budgeted price: </h5> 
-                <div class="total-price mx-5"> {{ totalPrice() }}</div>
+            <div class="card d-flex flex-row align-items-center justify-content-end">
+                <h4>Budgeted price: </h4> 
+                <div class="total-price mx-5"> 
+                    <h2>{{ totalPrice() }} €</h2>
+                </div>
         </div>
     </div>
 </div>
