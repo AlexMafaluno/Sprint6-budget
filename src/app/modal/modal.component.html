@@ -1,21 +1,12 @@
-<p>modal works!</p>
 
-
-<!-- Button trigger modal 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-  -->
-  <!-- Modal -->
    @if(showModal){
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title fs-5" id="exampleModalLabel">{{modal?.title}}</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h2 class="modal-title" id="exampleModalLabel">{{modal?.title}}</h2>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-center">
           <p>{{modal?.description}}</p>
         </div>
       </div>
