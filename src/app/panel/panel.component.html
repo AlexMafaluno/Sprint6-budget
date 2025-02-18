@@ -1,21 +1,55 @@
 <div class="bg-red">
   <form [formGroup]="panelForm">
     <div class="mb-3">
-      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(0)"><i class="bi bi-question-circle"></i></button>
+      <button
+        type="button"
+        class="btn"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="openModal(0)"
+      >
+        <i class="bi bi-question-circle"></i>
+      </button>
       <label for="num-page">Number of pages: </label>
-      <button class="btn" (click)="decreasePages()"><i class="bi bi-dash-circle"></i></button>
-      <input id="num-page" type="text" style="width: 50px" formControlName="numPages">
-      <button class="btn" (click)="increasePages()" ><i class="bi bi-plus-circle"></i></button>
+      <button class="btn" (click)="decreasePages()">
+        <i class="bi bi-dash-circle"></i>
+      </button>
+      <input
+        id="num-page"
+        type="text"
+        style="width: 50px"
+        formControlName="numPages"
+      />
+      <button class="btn" (click)="increasePages()">
+        <i class="bi bi-plus-circle"></i>
+      </button>
       <p *ngIf="panelForm.get('numPages')?.errors?.['required']">
         El campo es requerido
       </p>
     </div>
     <div class="mb-3">
-    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(1)"><i class="bi bi-question-circle"></i></button>
+      <button
+        type="button"
+        class="btn"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="openModal(1)"
+      >
+        <i class="bi bi-question-circle"></i>
+      </button>
       <label for="num-language">Number of languages: </label>
-      <button class="btn " (click)="decreaseLanguages()"><i class="bi bi-dash-circle"></i></button>
-      <input id="num-language" style="width: 50px" type="text" formControlName="numLanguages">
-      <button class="btn" (click)="increaseLanguages()" ><i class="bi bi-plus-circle"></i></button>
+      <button class="btn" (click)="decreaseLanguages()">
+        <i class="bi bi-dash-circle"></i>
+      </button>
+      <input
+        id="num-language"
+        style="width: 50px"
+        type="text"
+        formControlName="numLanguages"
+      />
+      <button class="btn" (click)="increaseLanguages()">
+        <i class="bi bi-plus-circle"></i>
+      </button>
       <p *ngIf="panelForm.get('numLanguages')?.errors?.['required']">
         El campo es requerido
       </p>
@@ -24,5 +58,3 @@
 </div>
 
 <app-modal [showModal]="showModal" [modal]="selectedModal"></app-modal>
-
-
