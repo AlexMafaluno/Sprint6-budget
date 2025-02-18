@@ -5,20 +5,23 @@
 El objetivo principal de esta aplicación es calcular el presupuesto de una página web de manera interactiva y dinámica, permitiendo al usuario seleccionar distintos servicios y ajustar parámetros como el número de páginas y el número de idiomas.
 
 
-Ojetivos:
+**Ojetivos:**
 
-Practicar el uso de Angular 19 con Bootstrap 5.
-Implementar la comunicación entre servicios y componentes en Angular.
-Crear validaciones personalizadas en formularios reactivos.
-Utilizar Signals para mejorar la gestión del estado y la reactividad en la aplicación.
+- Practicar el uso de Angular 19 con Bootstrap 5.
+  
+- Implementar la comunicación entre servicios y componentes en Angular.
+  
+- Crear validaciones personalizadas en formularios reactivos.
+ 
+- Utilizar Signals para mejorar la gestión del estado y la reactividad en la aplicación.
 
 ## Tecnologías utilizadas
 
-Angular 19 – Framework para la construcción de aplicaciones web.
-Bootstrap 5 – Para el diseño responsivo y estilización.
-Vercel – Para el despliegue de la aplicación.
-HTML, SCSS – Para la estructura y estilos de la interfaz.
-Karma y Jasmine – Para la implementación de pruebas unitarias.
+*Angular 19* – Framework para la construcción de aplicaciones web.
+*Bootstrap 5*– Para el diseño responsivo y estilización.
+*Vercel*– Para el despliegue de la aplicación.
+*HTML, SCSS*– Para la estructura y estilos de la interfaz.
+*Karma y Jasmine* – Para la implementación de pruebas unitarias.
 
 
 
@@ -28,7 +31,7 @@ Karma y Jasmine – Para la implementación de pruebas unitarias.
 
 ```bash
 Copiar código
-https://github.com/AlexMafaluno/S5-Onboarding-digital.git
+https://github.com/AlexMafaluno/Sprint6-budget.git
 ```
 
 
@@ -44,19 +47,18 @@ Una vez que el servidor esté en ejecución, abre tu navegador y navega a http:/
 
 ## Features principales
 
+**Componentes:**
 
-Checkbox: Permite al usuario seleccionar qué servicios incluir en el presupuesto.
-Panel: Componente hijo del Checkbox, recibe eventos emitidos por el componente padre.
-Modals: Mejora la comprensión de los parámetros de páginas e idiomas mediante ventanas emergentes.
-Formulario Reactivo: Permite generar presupuestos y almacenarlos en un array.
-Lista de presupuestos: Permite ordenar y filtrar presupuestos por nombre, fecha e importe utilizando Signals.
+*Checkbox:* Permite al usuario seleccionar qué servicios incluir en el presupuesto.
+*Panel:* Componente hijo del Checkbox, recibe eventos emitidos por el componente padre.
+*Modals:* Mejora la comprensión de los parámetros de páginas e idiomas mediante ventanas emergentes.
+*Formulario Reactivo:* Permite generar presupuestos y almacenarlos en un array.
+*Lista de presupuestos:* Permite ordenar y filtrar presupuestos por nombre, fecha e importe utilizando Signals.
 
+**Servicios:**
 BudgetService: Gestiona el cálculo del presupuesto total y administra los datos de los presupuestos creados.
 
-Servicios:
-Budget: gestioa el calcilo del presupuesto total y añade el calculo del coste total de la web
-
-Gestión de la URL y Reactividad: La aplicación sincroniza los parámetros seleccionados mediante Signals, permitiendo compartir la URL con la configuración actual del presupuesto.
+*Gestión de la URL y Reactividad:* La aplicación sincroniza los parámetros seleccionados mediante Signals, permitiendo compartir la URL con la configuración actual del presupuesto.
 
 ## despliegue en Vercel(demo)
 
