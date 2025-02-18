@@ -2,25 +2,23 @@
 
 ## Introduction
 
-
-La fuciò pricipa de esta app es que hace los calculos de u presupuesto de ua pagia we
+El objetivo principal de esta aplicación es calcular el presupuesto de una página web de manera interactiva y dinámica, permitiendo al usuario seleccionar distintos servicios y ajustar parámetros como el número de páginas y el número de idiomas.
 
 
 Ojetivos:
-Practicar Bootstrap 5 amb Angular.
-Analizar la comunicació entre Servei i Components.
-Crear validacions personalizades.
-Treballar amb el Signals
+
+Practicar el uso de Angular 19 con Bootstrap 5.
+Implementar la comunicación entre servicios y componentes en Angular.
+Crear validaciones personalizadas en formularios reactivos.
+Utilizar Signals para mejorar la gestión del estado y la reactividad en la aplicación.
 
 ## Tecnologías utilizadas
 
-Agualr 19
-Bootstrap 5
-Vercel para el deploy
-HTML
-SaSS
-Karma- y Jasmine para testing
-
+Angular 19 – Framework para la construcción de aplicaciones web.
+Bootstrap 5 – Para el diseño responsivo y estilización.
+Vercel – Para el despliegue de la aplicación.
+HTML, SCSS – Para la estructura y estilos de la interfaz.
+Karma y Jasmine – Para la implementación de pruebas unitarias.
 
 
 
@@ -46,22 +44,21 @@ Una vez que el servidor esté en ejecución, abre tu navegador y navega a http:/
 
 ## Features principales
 
-Checkox: permite al usuario elegir etre que servicios quiere presupuestar.
-Panel: compoete hijo del checkox, recie el mesaje emitido por el padre
-Modals: facilita la compresio al determiar los valores de pagiaas e idiomas.
-Formulario reactivo: permite crear u presupuesto  y lo añade al array de presupuestos. 
-Lista de presupeustos: permite ordenar y filtrar u presupuesto por omre, fecha, e importe. GEstioado por signals.
+
+Checkbox: Permite al usuario seleccionar qué servicios incluir en el presupuesto.
+Panel: Componente hijo del Checkbox, recibe eventos emitidos por el componente padre.
+Modals: Mejora la comprensión de los parámetros de páginas e idiomas mediante ventanas emergentes.
+Formulario Reactivo: Permite generar presupuestos y almacenarlos en un array.
+Lista de presupuestos: Permite ordenar y filtrar presupuestos por nombre, fecha e importe utilizando Signals.
+
+BudgetService: Gestiona el cálculo del presupuesto total y administra los datos de los presupuestos creados.
 
 Servicios:
 Budget: gestioa el calcilo del presupuesto total y añade el calculo del coste total de la web
 
-URL:
-Reactividad sobre la URL. Usado sigals se cosigue sicroizar los parametros marcados para poder compartir la URL.
+Gestión de la URL y Reactividad: La aplicación sincroniza los parámetros seleccionados mediante Signals, permitiendo compartir la URL con la configuración actual del presupuesto.
 
-## Demo
+## despliegue en Vercel(demo)
 
-## Additional Resources
+La aplicación está desplegada en Vercel y accesible en el siguiente enlace:
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.1.
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
